@@ -225,7 +225,13 @@ public class AmazonInappPurchasePlugin implements MethodCallHandler {
                 //ALREADY_PURCHASED..
                 default:
                     Log.d(TAG, "billingResponse is not ok, status:" + status);
-                    safeResult.error(TAG, status.toString(), null);
+                    try {
+                        JSONObject json = new JSONObject();
+                        json.put("code", status.toString());
+                        safeResult.invokeMethod("purchase-error", json.toString());
+                    } catch (JSONException e) {
+                        safeResult.error(TAG, status.toString(), null);
+                    }
                     break;
             }
         }
