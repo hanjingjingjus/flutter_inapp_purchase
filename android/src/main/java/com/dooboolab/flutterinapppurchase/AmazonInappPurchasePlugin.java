@@ -219,10 +219,7 @@ public class AmazonInappPurchasePlugin implements MethodCallHandler {
                         safeResult.error(TAG, "E_BILLING_RESPONSE_JSON_PARSE_ERROR", e.getMessage());
                     }
                     break;
-                case FAILED:
-                    safeResult.error(TAG, "buyItemByType", "billingResponse is not ok: " + status);
-                    break;
-                //ALREADY_PURCHASED..
+                //FAILED、ALREADY_PURCHASED..
                 default:
                     Log.d(TAG, "billingResponse is not ok, status:" + status);
                     try {
